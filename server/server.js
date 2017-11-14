@@ -17,11 +17,17 @@ server.listen(port, () => {
 io.on("connection", (socket) => {
     console.log(`Socket ${socket.id} connected`);
 
-    socket.emit("newEmail", {
+    socket.emit("newMessage", {
         from: "pe.messh@gmail.com",
         text: "This is a demo text from Pramesh",
-        onRecieved: new Date()
+        createdAt: new Date()
     });
+
+    socket.on("createMessage", (message) => {
+        console.log("Create message");
+        console.log(message);
+    });
+
     socket.on("disconnect", () => {
         console.log(`Socket ${socket.id} disconnected`);
     });
