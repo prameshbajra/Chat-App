@@ -9,15 +9,9 @@ socket.on("disconnect", () => {
 });
 
 socket.on("newMessage", (message) => {
-    console.log("New message Recieved");
-    console.log(message);
-});
-
-socket.emit("createMessage", {
-    from: "Pramesh Bazra",
-    text: "Trying call backs"
-}, (errorData) => {
-    console.log(`${errorData}`);
+    const li = $("<li></li>");
+    li.text(`${message.from} : ${message.text}`);
+    $("#messages").append(li);
 });
 
 $("#message-form").on("submit", (e) => {
