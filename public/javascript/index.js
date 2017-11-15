@@ -15,8 +15,12 @@ socket.on("newMessage", (message) => {
 });
 
 socket.on("newLocationMessage", (message) => {
-    console.log(message);
-    $("#messages").append(`<li>From : ${message.from} <br> Position : ${message.text}</li>`);
+    const li = $("<li></li>");
+    const a = $("<a target = '_black'>My current Location</a>");
+    li.text(`${message.from} : `);
+    a.attr("href", message.url);
+    li.append(a);
+    $("#messages").append(li);
 });
 
 $("#message-form").on("submit", (e) => {

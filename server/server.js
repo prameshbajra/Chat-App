@@ -10,6 +10,7 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 const { generateMsg } = require("./utils/message");
+const { generateLocationMsg } = require("./utils/message");
 
 app.use(express.static(public_path));
 server.listen(port, () => {
@@ -27,7 +28,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("createLocationMessage", (messageCoords) => {
-        io.emit("newLocationMessage", generateMsg("Pramesh dai", `${messageCoords.latitude},${messageCoords.longitude}`));
+        io.emit("newLocationMessage", generateLocationMsg("Pramesh hero", messageCoords.latitude, messageCoords.longitude));
     });
 
     socket.on("disconnect", () => {
