@@ -24,5 +24,20 @@ $("#message-form").on("submit", (e) => {
     });
 });
 
+const locationButton = $("#send-location");
+locationButton.on("click", () => {
+    if (!navigator.geolocation) {
+        return alert("You are not in 1990's so please do use a good/new browser!");
+    }
+    navigator.geolocation.getCurrentPosition((position) => {
+        socket.emit("createLocationMessage", {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+        });
+    }, (error) => {
+        alert(`You know you didn't select the correct option. Dumbass !!<br>${error}`);
+    })
+});
+
 
 
