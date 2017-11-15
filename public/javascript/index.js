@@ -14,6 +14,11 @@ socket.on("newMessage", (message) => {
     $("#messages").append(li);
 });
 
+socket.on("newLocationMessage", (message) => {
+    console.log(message);
+    $("#messages").append(`<li>From : ${message.from} <br> Position : ${message.text}</li>`);
+});
+
 $("#message-form").on("submit", (e) => {
     e.preventDefault();
     socket.emit("createMessage", {
