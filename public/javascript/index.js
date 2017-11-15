@@ -9,15 +9,17 @@ socket.on("disconnect", () => {
 });
 
 socket.on("newMessage", (message) => {
+    const timeFormat = moment(message.createdAt).format("h:mm a");
     const li = $("<li></li>");
-    li.text(`${message.from} : ${message.text}`);
+    li.text(`${message.from} ${timeFormat}: ${message.text}`);
     $("#messages").append(li);
 });
 
 socket.on("newLocationMessage", (message) => {
+    const timeFormat = moment(message.createdAt).format("h:mm a");
     const li = $("<li></li>");
     const a = $("<a target = '_black'>My current Location</a>");
-    li.text(`${message.from} : `);
+    li.text(`${message.from} ${timeFormat}: `);
     a.attr("href", message.url);
     li.append(a);
     $("#messages").append(li);
@@ -27,7 +29,7 @@ $("#message-form").on("submit", (e) => {
     e.preventDefault();
     const messageBox = $("#message");
     socket.emit("createMessage", {
-        from: "HackersINC",
+        from: "Maicha",
         text: messageBox.val()
     }, (dataError) => {
         messageBox.val("");

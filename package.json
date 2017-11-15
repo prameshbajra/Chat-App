@@ -23,6 +23,7 @@
     "homepage": "https://github.com/Suzal3579/Chat-App#readme",
     "dependencies": {
         "express": "^4.16.2",
+        "moment": "^2.19.2",
         "socket.io": "^2.0.4"
     },
     "devDependencies": {

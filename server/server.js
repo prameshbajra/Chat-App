@@ -28,7 +28,7 @@ io.on("connection", (socket) => {
     });
 
     socket.on("createLocationMessage", (messageCoords) => {
-        io.emit("newLocationMessage", generateLocationMsg("Pramesh hero", messageCoords.latitude, messageCoords.longitude));
+        io.emit("newLocationMessage", generateLocationMsg("Apple cha", messageCoords.latitude, messageCoords.longitude));
     });
 
     socket.on("disconnect", () => {
