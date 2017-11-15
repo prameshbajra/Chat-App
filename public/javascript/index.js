@@ -13,4 +13,22 @@ socket.on("newMessage", (message) => {
     console.log(message);
 });
 
+socket.emit("createMessage", {
+    from: "Pramesh Bazra",
+    text: "Trying call backs"
+}, (errorData) => {
+    console.log(`${errorData}`);
+});
+
+$("#message-form").on("submit", (e) => {
+    e.preventDefault();
+    socket.emit("createMessage", {
+        from: "HackersINC",
+        text: $("#message").val()
+    }, (dataError) => {
+        console.log(`There is a ${dataError} bitch`);
+    });
+});
+
+
 

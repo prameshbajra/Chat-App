@@ -27,12 +27,13 @@ io.on("connection", (socket) => {
         createdAt: new Date().getTime()
     });
 
-    socket.on("createMessage", (message) => {
+    socket.on("createMessage", (message, callback) => {
         io.emit("newMessage", {
             from: message.from,
             text: message.text,
             createdAt: new Date().getTime()
         });
+        callback("Fail vayo muji !!!");
     });
 
     socket.on("disconnect", () => {
