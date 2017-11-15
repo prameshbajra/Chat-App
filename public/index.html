@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/styles.css">
     <title>Chat App</title>
 </head>
-<body>
-    <ol id = "messages">
-    </ol>
 
-    <form id="message-form">
-        <input id = "message" type="text" placeholder="Enter your message here ...">
-        <button>Send</button>
-    </form>
-    <button id = "send-location">Send Location</button>
-       
+<body class="chat">
+    <div class="chat__sidebar">
+        <h3>People</h3>
+        <div id="users">
+
+        </div>
+    </div>
+    <div class="chat__main">
+        <ol id="messages" class = "chat__messages">
+        </ol>
+        <div class="chat__footer">
+            <form id="message-form">
+                <input id="message" type="text" placeholder="Enter your message here ..." autofocus autocomplete="off">
+                <button>Send</button>
+            </form>
+            <button id="send-location">Send Location</button>
+        </div>
+    </div>
+
     <!-- loading socket io library ... -->
-    <script src = "/socket.io/socket.io.js"></script>
-    <script src = "/javascript/libs/jquery.min.js"></script>
-    <script src = "/javascript/index.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/javascript/libs/jquery.min.js"></script>
+    <script src="/javascript/index.js"></script>
 </body>
+
 </html>

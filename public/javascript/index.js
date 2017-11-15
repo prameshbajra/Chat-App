@@ -25,11 +25,12 @@ socket.on("newLocationMessage", (message) => {
 
 $("#message-form").on("submit", (e) => {
     e.preventDefault();
+    const messageBox = $("#message");
     socket.emit("createMessage", {
         from: "HackersINC",
-        text: $("#message").val()
+        text: messageBox.val()
     }, (dataError) => {
-        console.log(`There is a ${dataError} bitch`);
+        messageBox.val("");
     });
 });
 
@@ -38,12 +39,15 @@ locationButton.on("click", () => {
     if (!navigator.geolocation) {
         return alert("You are not in 1990's so please do use a good/new browser!");
     }
+    locationButton.attr("disabled", "disabled").text("Sending Location ...");
     navigator.geolocation.getCurrentPosition((position) => {
         socket.emit("createLocationMessage", {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
         });
+        locationButton.removeAttr("disabled").text("Send Location");
     }, (error) => {
+        locationButton.removeAttr("disabled").text("Send Location");;
         alert(`You know you didn't select the correct option. Dumbass !!<br>${error}`);
     })
 });
