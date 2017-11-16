@@ -18,6 +18,16 @@ const scrollToButton = () => {
 
 socket.on("connect", () => {
     console.log("Connected to server");
+    const params = $.deparam(window.location.search);
+    console.log(params);
+    socket.emit("join", params, (error) => {
+        if (error) {
+            alert("Some weird error occured");
+            window.location.href = "/";
+        } else {
+            console.log("No errors ... Yeye");
+        }
+    });
 });
 
 socket.on("disconnect", () => {
