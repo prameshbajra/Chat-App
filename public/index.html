@@ -28,10 +28,37 @@
         </div>
     </div>
 
+    <!-- Generating a template ... For normal message -->
+    <script id = "message-template" type = "text/template">
+        <li class = "message">
+            <div class="message__title">
+                <h4>{{from}}</h4>
+                <span>{{createdAt}}</span>
+            </div>
+            <div class="message__body">
+                <p>{{text}}</p>
+            </div>
+        </li>
+    </script>
+    <!-- Generating a template ... For location message -->
+    <script id = "location-message-template" type = "text/template">
+        <li class = "message">
+            <div class="message__title">
+                <h4>{{from}}</h4>
+                <span>{{createdAt}}</span>
+            </div>
+            <div class="message__body">
+                <p>
+                    <a href="{{url}}" target = "_blank">My Location</a>
+                </p>
+            </div>
+        </li>
+    </script>
     <!-- loading socket io library ... -->
     <script src="/socket.io/socket.io.js"></script>
     <script src="/javascript/libs/jquery.min.js"></script>
     <script src="/javascript/libs/moment.js"></script>
+    <script src="/javascript/libs/mustache.js"></script>
     <script src="/javascript/index.js"></script>
 </body>
 
