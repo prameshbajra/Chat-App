@@ -21,20 +21,18 @@ server.listen(port, () => {
 io.on("connection", (socket) => {
     console.log(`Socket ${socket.id} connected`);
     socket.on("join", (params, callback) => {
-        console.log(params);
         if (!isRealString(params.name) || !isRealString(params.roomName)) {
             callback("Name and the roomname both are required !!");
         }
+        socket.join(params.roomName);
+        socket.emit("newMessage", generateMsg("Admin", "Welcome to the chat app"));
+        socket.broadcast.to(params.roomName).emit("newMessage", generateMsg("Admin", `${params.name} joined.`));
         callback();
     });
 
-    socket.emit("newMessage", generateMsg("Admin", "Welcome to the chat app"));
-
-    socket.broadcast.emit("newMessage", generateMsg("Admin", `${socket.id} joined. Welcome!`));
-
     socket.on("createMessage", (message, callback) => {
         io.emit("newMessage", generateMsg(message.from, message.text));
-        callback("Fail vayo muji !!!");
+        callback("Working here ...");
     });
 
     socket.on("createLocationMessage", (messageCoords) => {
