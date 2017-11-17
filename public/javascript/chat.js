@@ -58,6 +58,15 @@ socket.on("newLocationMessage", (message) => {
     scrollToButton();
 });
 
+socket.on("updateUserList", (users) => {
+    const ol = $("<ol></ol>");
+    console.log(users);
+    users.forEach((user) => {
+        ol.append($("<li></li>").text(user));
+    });
+    $("#users").html(ol);
+});
+
 $("#message-form").on("submit", (e) => {
     e.preventDefault();
     const messageBox = $("#message");

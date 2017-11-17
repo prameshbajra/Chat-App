@@ -15,11 +15,11 @@ class Users {
         });
     }
 
-    getUserList(room) {
-        const users = this.users.filter((user) => {
-            return user.room === room;
+    getUserList(roomName) {
+        let users = this.users.filter((user) => {
+            return user.roomName === roomName;
         });
-        const namesArray = users.map((user) => {
+        let namesArray = users.map((user) => {
             return user.name;
         });
         return namesArray;
