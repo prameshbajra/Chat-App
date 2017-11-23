@@ -22,7 +22,6 @@ server.listen(port, () => {
 });
 
 io.on("connection", (socket) => {
-    console.log(`Socket ${socket.id} connected`);
     socket.on("join", (params, callback) => {
         if (!isRealString(params.name) || !isRealString(params.roomName)) {
             return callback("Name and the roomname both are required !!");
@@ -39,7 +38,6 @@ io.on("connection", (socket) => {
 
     socket.on("createMessage", (message, callback) => {
         const user = users.getUser(socket.id);
-        console.log(user);
         if (user && isRealString(message.text)) {
             io.to(user[0].roomName).emit("newMessage", generateMsg(user[0].name, message.text));
         }

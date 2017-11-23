@@ -60,7 +60,6 @@ socket.on("newLocationMessage", (message) => {
 
 socket.on("updateUserList", (users) => {
     const ol = $("<ol></ol>");
-    console.log(users);
     users.forEach((user) => {
         ol.append($("<li></li>").text(user));
     });
